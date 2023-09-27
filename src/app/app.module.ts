@@ -11,6 +11,7 @@ import { DetailslibrariesComponent } from './libraries/view/detailslibraries/det
 import { AllsongsComponent } from './songs/view/allsongs/allsongs.component';
 import { DetailssongsComponent } from './songs/view/detailssongs/detailssongs.component';
 import { AllcollaborationsComponent } from './collaboration/view/allcollaborations/allcollaborations.component';
+import { ProfilComponent } from './account/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AllcollaborationsComponent } from './collaboration/view/allcollaboratio
     DetailslibrariesComponent,
     AllsongsComponent,
     DetailssongsComponent,
-    AllcollaborationsComponent
+    AllcollaborationsComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

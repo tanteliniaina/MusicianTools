@@ -7,6 +7,7 @@ import { AllsongsComponent } from './songs/view/allsongs/allsongs.component';
 import { AlllibrariesComponent } from './libraries/view/alllibraries/alllibraries.component';
 import { AllcollaborationsComponent } from './collaboration/view/allcollaborations/allcollaborations.component';
 import { AuthentificationComponent } from './account/authentification/authentification.component';
+import { ProfilComponent } from './account/profil/profil.component';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'allsongs', component:  AllsongsComponent},
   { path: 'alllibraries', component:  AlllibrariesComponent},
   { path: 'allcollaborations', component:  AllcollaborationsComponent},
-  { path: 'authentication', component:  AuthentificationComponent}
+  { path: 'authentication', component:  AuthentificationComponent},
+  { path: 'profil', component:  ProfilComponent}
 ];
 
 @NgModule({
