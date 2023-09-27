@@ -1,3 +1,8 @@
+#Type de Terminal
+
+# Installation de toutes les dépendences avant toutes choses
+`npm install`
+
 # MusicianTools
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
