@@ -17,6 +17,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ContactsComponent } from './more/contacts/contacts.component';
+import { HelpComponent } from './more/help/help.component';
 
 const routes=[
   { path: '', component:  HomeComponent},
@@ -41,7 +43,9 @@ const routes=[
     AllsongsComponent,
     DetailssongsComponent,
     AllcollaborationsComponent,
-    ProfilComponent
+    ProfilComponent,
+    ContactsComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

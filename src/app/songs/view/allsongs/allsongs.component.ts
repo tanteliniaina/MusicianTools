@@ -10,7 +10,7 @@ import { SongsService } from 'src/app/services/songs.service';
   styleUrls: ['./allsongs.component.css']
 })
 
-export class AllsongsComponent implements OnInit {
+export class AllsongsComponent /*implements OnInit*/ {
 
   songlist: Songs[] = [];
 
@@ -20,9 +20,10 @@ export class AllsongsComponent implements OnInit {
       this.songlist = data;
     });
   }
-
+/*
   ngOnInit(): void {
   }
+  */
 
   /*fonction on submit pour enregistrer*/
   onSubmit(form: NgForm) {
@@ -38,11 +39,7 @@ export class AllsongsComponent implements OnInit {
 
   /*on cancel pour la redirection*/
   onCancel() {
-    this.router.navigate(['/songs']);
-  }
-
-  detailSong(song_id: any){
-    this.router.navigate(['/detailssong/']+ song_id);
+    this.router.navigate(['/allsongs']);
   }
 
   removeSong(song_id: any) {
