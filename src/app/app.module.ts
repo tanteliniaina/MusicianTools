@@ -12,6 +12,10 @@ import { AllsongsComponent } from './songs/view/allsongs/allsongs.component';
 import { DetailssongsComponent } from './songs/view/detailssongs/detailssongs.component';
 import { AllcollaborationsComponent } from './collaboration/view/allcollaborations/allcollaborations.component';
 import { ProfilComponent } from './account/profil/profil.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { ProfilComponent } from './account/profil/profil.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

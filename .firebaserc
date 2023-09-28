@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fihirana-a079a": {
+      "hosting": {
+        "MusicianTools": [
+          "fihirana-a079a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fihirana-a079a"
+  }
+}

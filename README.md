@@ -30,3 +30,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Installation de Firebase
+npm install firebase : pour l'installation global de firebase
+npm install -g firebase-tools : pour installer le tools de firebase après le liens est ici pour les commande (https://www.npmjs.com/package/firebase-tools)
+npm add @angular/fire: pour choisir les applications firebase
+
+
