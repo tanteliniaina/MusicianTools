@@ -36,4 +36,7 @@ npm install firebase : pour l'installation global de firebase
 npm install -g firebase-tools : pour installer le tools de firebase après le liens est ici pour les commande (https://www.npmjs.com/package/firebase-tools)
 npm add @angular/fire: pour choisir les applications firebase
 
+# Début de requetage
+1- Création d'une répertoire nommé models sous app pour les modèle (fichier .ts)
+2- Création d'un répertoire nommé service sous app pour les service (xxx.service.ts à utiliser et supprimer le xxx.service.spec.ts) : ng g service services/nom de la service
 

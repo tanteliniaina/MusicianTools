@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-detailssongs',
@@ -8,6 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class DetailssongsComponent implements OnInit {
 
   constructor() { }
+
+  onSubmit(form: NgForm){
+
+  }
+
+  onCancel(){
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,1 +1,69 @@
-<p>detailssongs works!</p>
+<div class="col-md bg-white text-dark">
+    <h2 class="text-center mb-4">Song details :</h2>
+    <form  (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <!-- Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" ngModel class="form-control" id="title" name="Title">
+        </div>
+
+
+        <!-- Artist -->
+        <div class="mb-3">
+            <label for="artist" class="form-label">Artist</label>
+            <input type="text" ngModel class="form-control" id="artist" name="Artist">
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" ngModel class="form-control" id="category" name="Category">
+        </div>
+
+        <!-- Created -->
+        <div class="mb-3">
+            <label for="created" class="form-label">Created</label>
+            <input type="date" ngModel class="form-control" id="created" name="Created">
+        </div>
+
+        <!-- CreatedBy -->
+        <div class="mb-3">
+            <label for="createdBy" class="form-label">Created By</label>
+            <input type="text" ngModel class="form-control" id="createdBy" name="CreatedBy">
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" ngModel class="form-control" id="date" name="Date">
+        </div>
+
+        <!-- Link -->
+        <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input type="text" ngModel class="form-control" id="link" name="Link">
+        </div>
+
+        <!-- Mark -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" ngModel class="form-check-input" id="mark" name="Mark">
+            <label class="form-check-label" for="mark">Mark</label>
+        </div>
+
+        <!-- Note -->
+        <div class="mb-3">
+            <label for="note" class="form-label">Note</label>
+            <textarea ngModel class="form-control" id="note" name="Note" rows="4"></textarea>
+        </div>
+
+        <!-- Shared -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" ngModel class="form-check-input" id="shared" name="Shared">
+            <label ngModelclass="form-check-label" for="shared">Shared</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button class="btn btn-danger" (click)="onCancel()">Remove</button>
+    </form>
+</div>
