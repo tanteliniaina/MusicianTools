@@ -1,16 +1,16 @@
-/*body {
-    background: rgb(52, 17, 228);
-    background: -moz-linear-gradient(135deg, rgba(52, 17, 228, 1) 0%, rgba(211, 148, 233, 1) 100%);
-    background: -webkit-linear-gradient(135deg, rgba(52, 17, 228, 1) 0%, rgba(211, 148, 233, 1) 100%);
-    background: linear-gradient(135deg, rgba(52, 17, 228, 1) 0%, rgba(211, 148, 233, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3411e4", endColorstr="#d394e9", GradientType=1);
+body {
+    background: rgb(99,142,143);
+    background: -moz-linear-gradient(0deg, rgba(99,142,143,0.4458158263305322) 0%, rgba(255,255,255,0.3561799719887955) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(99,142,143,0.4458158263305322) 0%, rgba(255,255,255,0.3561799719887955) 100%);
+    background: linear-gradient(0deg, rgba(99,142,143,0.4458158263305322) 0%, rgba(255,255,255,0.3561799719887955) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#638e8f",endColorstr="#ffffff",GradientType=1);
 
     background-repeat: no-repeat;
     border-radius: 10px;
     margin: 10px;
     height: 100%;
 }
-*/
+
 
 .navbar.navbar-expand-lg.navbar-dark.bg-dark{
     position: sticky; padding-left: 2%;margin-left: 2%;padding-right: 2%;margin-right: 2%; margin-top: 0.5%; border-radius: 20px;
