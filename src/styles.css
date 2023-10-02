@@ -19,3 +19,17 @@
 .navbar-toggler{
     margin-right: 2%; color: white; border-radius: 30px;
 }
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-justify: auto;
+}
+
+h2{
+    color: #0e0ef0;
+    font-family: fantasy;
+}
+
+h4{
+    color: #c908c0 ;
+}
