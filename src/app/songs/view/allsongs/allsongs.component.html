@@ -1,6 +1,99 @@
 <div class="row">
     <!--La liste-->
     <div class="col-md">
+        <h2 class="text-center mb-4">All songs</h2>
+        <div class="my-3 p-3 bg-white text-dark rounded shadow-sm">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-freearea-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-freearea" type="button" role="tab" aria-controls="nav-freearea"
+                        aria-selected="false">Free area</button>
+
+                    <button class="nav-link" id="nav-personnalsong-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-personnalsong" type="button" role="tab" aria-controls="nav-personnalsong"
+                        aria-selected="true">Your Songs</button>
+
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <!--Premier  de la liste des libraires-->
+                <div class="tab-pane fade" id="nav-personnalsong" role="tabpanel"
+                    aria-labelledby="nav-personnalsong-tab">
+                    <br>
+                    <ul *ngFor="let song of displayedItems" class="list-group list-group">
+                        <li (click)="showSongDetails(song.id)"
+                            class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <h5>{{song.Title}}</h5>
+                                </div>
+                                <p>{{song.Description}}</p>
+                            </div>
+                            <span class="badge bg-secondary rounded-pill">{{song.Date}}</span>
+                        </li>
+                    </ul>
+
+                    <!--<button class="btn btn-danger" (click)="removeLibrary(library.id)">Remove</button>-->
+                    <br>
+                    <nav aria-label="Pagination de la liste">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <button (click)="previousPage()" [disabled]="currentPage === 1" type="button"
+                                    class="btn btn-light"> &nbsp;&nbsp;&lt;&lt;Previous&nbsp;&nbsp;</button>
+                            </li>
+                            <li>&nbsp;</li>
+                            <li class="page-item"> <button type="button" class="btn btn-secondary">Page:
+                                    {{currentPage}}</button></li>
+                            <li>&nbsp;</li>
+                            <li class="page-item">
+                                <button (click)="nextPage()" [disabled]="endIndex >= songlist.length" type="button"
+                                    class="btn btn-light">&nbsp;&nbsp;Next&gt;&gt;&nbsp;&nbsp;</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!--Deuxième  de la liste des libraires-->
+                <div class="tab-pane fade show active" id="nav-freearea" role="tabpanel"
+                    aria-labelledby="nav-freearea-tab">
+                    <br>
+                    <ul *ngFor="let song of displayedItems" class="list-group list-group">
+                        <li (click)="showSongDetails(song.id)"
+                            class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <h5>{{song.Title}}</h5>
+                                </div>
+                                <p>{{song.Description}}</p>
+                            </div>
+                            <span class="badge bg-secondary rounded-pill">{{song.Date}}</span>
+                        </li>
+                    </ul>
+
+                    <!--<button class="btn btn-danger" (click)="removeLibrary(library.id)">Remove</button>-->
+                    <br>
+                    <nav aria-label="Pagination de la liste">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <button (click)="previousPage()" [disabled]="currentPage === 1" type="button"
+                                    class="btn btn-light"> &nbsp;&nbsp;&lt;&lt;Previous&nbsp;&nbsp;</button>
+                            </li>
+                            <li>&nbsp;</li>
+                            <li class="page-item"> <button type="button" class="btn btn-secondary">Page:
+                                    {{currentPage}}</button></li>
+                            <li>&nbsp;</li>
+                            <li class="page-item">
+                                <button (click)="nextPage()" [disabled]="endIndex >= songlist.length" type="button"
+                                    class="btn btn-light">&nbsp;&nbsp;Next&gt;&gt;&nbsp;&nbsp;</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!--ANCIENNE LISTE-->
+        <!--
         <div class="my-3 p-3 bg-body rounded shadow-sm  bg-white text-dark">
             <h4 class="border-bottom pb-2 mb-0">Current trends :</h4>
             <div *ngFor="let song of songlist" class="d-flex text-body-secondary pt-3">
@@ -19,76 +112,98 @@
                 <a href="#">All Songs</a>
             </small>
         </div>
+        -->
     </div>
 
     <!--Les détails et formulaire-->
     <div class="col-md">
         <div class="my-3 p-3 bg-body rounded shadow-sm  bg-white text-dark">
             <h2 class="text-center mb-4">Song details :</h2>
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="create" autocomplete="off" checked>
+                <label class="btn btn-outline-success" for="create">Add a new song</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="edit" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="edit">Edit current song</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="delete" autocomplete="off">
+                <label class="btn btn-outline-danger" for="delete">Delete current song</label>
+            </div>
+
+            <br>
+            <hr>
+
             <form (ngSubmit)="onSubmit(form)" #form="ngForm">
                 <!-- Title -->
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" ngModel class="form-control" id="title" name="Title">
+                    <input type="text" [(ngModel)]="song.Title" ngModel class="form-control" id="title" name="Title">
                 </div>
 
 
                 <!-- Artist -->
                 <div class="mb-3">
                     <label for="artist" class="form-label">Artist</label>
-                    <input type="text" ngModel class="form-control" id="artist" name="Artist">
+                    <input type="text" [(ngModel)]="song.Artist" ngModel class="form-control" id="artist" name="Artist">
                 </div>
 
                 <!-- Category -->
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <input type="text" ngModel class="form-control" id="category" name="Category">
+                    <input type="text" [(ngModel)]="song.Category" ngModel class="form-control" id="category"
+                        name="Category">
                 </div>
 
                 <!-- Created -->
                 <div class="mb-3">
                     <label for="created" class="form-label">Created</label>
-                    <input type="date" ngModel class="form-control" id="created" name="Created">
+                    <input type="date" [(ngModel)]="song.Created" ngModel class="form-control" id="created"
+                        name="Created">
                 </div>
 
                 <!-- CreatedBy -->
                 <div class="mb-3">
                     <label for="createdBy" class="form-label">Created By</label>
-                    <input type="text" ngModel class="form-control" id="createdBy" name="CreatedBy">
+                    <input type="text" [(ngModel)]="song.CreatedBy" ngModel class="form-control" id="createdBy"
+                        name="CreatedBy">
                 </div>
 
                 <!-- Date -->
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
-                    <input type="date" ngModel class="form-control" id="date" name="Date">
+                    <input type="date" [(ngModel)]="song.Date" ngModel class="form-control" id="date" name="Date">
                 </div>
 
                 <!-- Link -->
                 <div class="mb-3">
                     <label for="link" class="form-label">Link</label>
-                    <input type="text" ngModel class="form-control" id="link" name="Link">
+                    <input type="text" [(ngModel)]="song.Link" ngModel class="form-control" id="link" name="Link">
                 </div>
 
                 <!-- Mark -->
                 <div class="mb-3 form-check">
-                    <input type="checkbox" ngModel class="form-check-input" id="mark" name="Mark">
+                    <input type="checkbox" [(ngModel)]="song.Mark" ngModel class="form-check-input" id="mark"
+                        name="Mark">
                     <label class="form-check-label" for="mark">Mark</label>
                 </div>
 
                 <!-- Note -->
                 <div class="mb-3">
                     <label for="note" class="form-label">Note</label>
-                    <textarea ngModel class="form-control" id="note" name="Note" rows="4"></textarea>
+                    <textarea [(ngModel)]="song.Note" ngModel class="form-control" id="note" name="Note"
+                        rows="4"></textarea>
                 </div>
 
                 <!-- Shared -->
                 <div class="mb-3 form-check">
-                    <input ngModel type="checkbox" ngModel class="form-check-input" id="shared" name="Shared">
+                    <input [(ngModel)]="song.Shared" ngModel type="checkbox" ngModel class="form-check-input"
+                        id="shared" name="Shared">
                     <label class="form-check-label" for="shared">Shared</label>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Save</button>
 
             </form>
             <button class="btn btn-primary" (click)="onCancel()">Cancel</button>

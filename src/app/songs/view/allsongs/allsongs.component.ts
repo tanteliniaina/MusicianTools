@@ -13,6 +13,10 @@ import { SongsService } from 'src/app/services/songs.service';
 export class AllsongsComponent /*implements OnInit*/ {
 
   songlist: Songs[] = [];
+  song: Songs={};
+
+  currentPage = 1;
+  librariesPerPage = 10;
 
   constructor(private router: Router, private db_song: SongsService) {
     this.db_song.getSongs().subscribe((data) => {
@@ -52,5 +56,38 @@ export class AllsongsComponent /*implements OnInit*/ {
           console.log(err);
       });
   }
+
+  showSongDetails(library_id: any){
+    this.db_song.getSong(library_id)
+    .subscribe((data)=>{
+      this.song = data;
+    })
+  }
+
+    /*Début de la gestion de la pagination en mode liste*/
+    get startIndex(): number {
+      return (this.currentPage - 1) * this.librariesPerPage;
+    }
+  
+    get endIndex(): number {
+      return this.currentPage * this.librariesPerPage;
+    }
+  
+    get displayedItems(): any[] {
+      return this.songlist.slice(this.startIndex, this.endIndex);
+    }
+  
+    /*Gestion des boutons next et previous en mode liste*/
+    previousPage(): void {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    }
+    
+    nextPage(): void {
+      if (this.endIndex < this.songlist.length) {
+        this.currentPage++;
+      }
+    }
 
 }

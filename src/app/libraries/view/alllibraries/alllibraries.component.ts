@@ -61,6 +61,8 @@ export class AlllibrariesComponent /*implements OnInit*/ {
     })
   }
 
+  
+
   /*Début de la gestion de la pagination en mode liste*/
   get startIndex(): number {
     return (this.currentPage - 1) * this.librariesPerPage;
