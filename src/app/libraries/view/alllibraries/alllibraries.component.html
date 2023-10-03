@@ -1,112 +1,270 @@
 <div class="row">
     <!--La liste-->
-    <div class="col-md bg-primary text-white">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">Suggestions</h6>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
-                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                    <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark">Full Name</strong>
-                        <a href="#">Follow</a>
+    <div class="col-md">
+        <h2 class="text-center mb-4">Suggestions</h2>
+        <div class="my-3 p-3 bg-white text-dark rounded shadow-sm">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-listview-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-listview" type="button" role="tab" aria-controls="nav-listview"
+                        aria-selected="false">List view</button>
+
+                    <button class="nav-link" id="nav-folderview-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-folderview" type="button" role="tab" aria-controls="nav-folderview"
+                        aria-selected="true">Grid view</button>
+
+                </div>
+            </nav>
+
+
+            <div class="tab-content" id="nav-tabContent">
+                <!--Premier  de la liste des libraires-->
+                <div class="tab-pane fade" id="nav-folderview" role="tabpanel" aria-labelledby="nav-folderview-tab">
+                    <br>
+                    <div class="row" *ngFor="let column of getItemsInColumns()">
+                        <div class="col" *ngFor="let library of column">
+                            <div class="card border-dark mb-3" style="max-width: 18rem;"
+                                (click)="showLibraryDetails(library.id)">
+                                <div class="card-header">{{library.Date}}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{library.Title}}</h5>
+                                    <p class="card-text">{{library.DateEvent}}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="d-block">@username</span>
+                </div>
+
+                <!--Deuxième  de la liste des libraires-->
+                <div class="tab-pane fade show active" id="nav-listview" role="tabpanel"
+                    aria-labelledby="nav-listview-tab">
+                    <br>
+                    <ul *ngFor="let library of displayedItems" class="list-group list-group">
+                        <li (click)="showLibraryDetails(library.id)" class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold"><h5>{{library.Title}}</h5></div>
+                                <p>{{library.Description}}</p>
+                            </div>
+                            <span class="badge bg-secondary rounded-pill">{{library.Date}}</span>
+                        </li>
+                    </ul>
+                    
+                    <!--<button class="btn btn-danger" (click)="removeLibrary(library.id)">Remove</button>-->
+                    <br>
+                    <nav aria-label="Pagination de la liste">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <button (click)="previousPage()" [disabled]="currentPage === 1" type="button"
+                                    class="btn btn-light"> &nbsp;&nbsp;&lt;&lt;Previous&nbsp;&nbsp;</button>
+                            </li>
+                            <li>&nbsp;</li>
+                            <li class="page-item"> <button type="button" class="btn btn-secondary">Page:
+                                    {{currentPage}}</button></li>
+                            <li>&nbsp;</li>
+                            <li class="page-item">
+                                <button (click)="nextPage()" [disabled]="endIndex >= libraries.length" type="button"
+                                    class="btn btn-light">&nbsp;&nbsp;Next&gt;&gt;&nbsp;&nbsp;</button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
-                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                    <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark">Full Name</strong>
-                        <a href="#">Follow</a>
-                    </div>
-                    <span class="d-block">@username</span>
-                </div>
-            </div>
-            <div class="d-flex text-body-secondary pt-3">
-                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
-                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                    <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark">Full Name</strong>
-                        <a href="#">Follow</a>
-                    </div>
-                    <span class="d-block">@username</span>
-                </div>
-            </div>
-            <small class="d-block text-end mt-3">
-                <a href="#">All suggestions</a>
-            </small>
         </div>
     </div>
 
     <!--Les détails et formulaire-->
-    <div class="col-md bg-dark text-white">
-        <h2 class="text-center mb-4">Formulaire Bootstrap</h2>
-        <form>
-            
-            <!-- Title -->
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="Title">
-            </div>
-            
-            <!-- CreatedBy -->
-            <div class="mb-3">
-                <label for="createdBy" class="form-label">CreatedBy</label>
-                <input type="text" class="form-control" id="createdBy" name="CreatedBy">
-            </div>
+    <div class="col-md">
+        <h2 class="text-center mb-4">Library details</h2>
+        <!--Gestionnaire des tabs-->
+        <div class="my-3 p-3 bg-white text-dark rounded shadow-sm">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-detailslibrary-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-detailslibrary" type="button" role="tab" aria-controls="nav-detailslibrary"
+                        aria-selected="true">Library details</button>
+                    <button class="nav-link" id="nav-addlibrary-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-addlibrary" type="button" role="tab" aria-controls="nav-addlibrary"
+                        aria-selected="false">Manage
+                        library</button>
+                    <button class="nav-link" id="nav-collaboration-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-collaboration" type="button" role="tab" aria-controls="nav-collaboration"
+                        aria-selected="false">Add song</button>
+                </div>
+            </nav>
 
-            <!-- Date -->
-            <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="datetime-local" class="form-control" id="date" name="Date">
+            <!--debut du contenu tab-->
+            <div class="tab-content" id="nav-tabContent">
+                <!--Premier tab-->
+                <div class="tab-pane fade show active" id="nav-detailslibrary" role="tabpanel"
+                    aria-labelledby="nav-detailslibrary-tab">
+                    <br>
+                    <form>
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" [(ngModel)]="library.Title" class="form-control" id="title" name="Title"
+                                disabled>
+                        </div>
+
+                        <!-- Event -->
+                        <div class="mb-3">
+                            <label for="event" class="form-label">Event</label>
+                            <input type="text" [(ngModel)]="library.Event" class="form-control" id="event" name="Event"
+                                disabled>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea [(ngModel)]="library.Description" class="form-control" id="description"
+                                name="Description" rows="4" disabled></textarea>
+                        </div>
+
+                        <!-- CreatedBy -->
+                        <div class="mb-3">
+                            <label for="createdBy" class="form-label">Created By</label>
+                            <input type="text" [(ngModel)]="library.CreatedBy" class="form-control" id="createdBy"
+                                name="CreatedBy" disabled>
+                        </div>
+
+                        <!-- DateEvent -->
+                        <div class="mb-3">
+                            <label for="dateEvent" class="form-label">Event's Date</label>
+                            <input type="datetime-local" [(ngModel)]="library.DateEvent" class="form-control"
+                                id="dateEvent" name="DateEvent" disabled>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Created Date</label>
+                            <input type="datetime-local" [(ngModel)]="library.Date" class="form-control" id="date"
+                                name="Date" disabled>
+                        </div>
+
+                        <!-- Shared -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" [(ngModel)]="library.Shared" class="form-check-input" id="shared"
+                                name="Shared">
+                            <label class="form-check-label" for="shared">Shared</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Soumettre</button>
+                    </form>
+                </div>
+
+
+                <!--Deuxieme tab-->
+                <div class="tab-pane fade" id="nav-addlibrary" role="tabpanel" aria-labelledby="nav-addlibrary-tab">
+                    <br>
+                    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" ngModel class="form-control" id="title" name="Title">
+                        </div>
+
+                        <!-- Event -->
+                        <div class="mb-3">
+                            <label for="event" class="form-label">Event</label>
+                            <input type="text" ngModel class="form-control" id="event" name="Event">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea ngModel class="form-control" id="description" name="Description"
+                                rows="4"></textarea>
+                        </div>
+
+                        <!-- CreatedBy -->
+                        <div class="mb-3">
+                            <label for="createdBy" class="form-label">Created By</label>
+                            <input ngModel type="text" class="form-control" id="createdBy" name="CreatedBy">
+                        </div>
+
+                        <!-- DateEvent -->
+                        <div class="mb-3">
+                            <label for="dateEvent" class="form-label">Event's Date</label>
+                            <input ngModel type="datetime-local" class="form-control" id="dateEvent" name="DateEvent">
+                        </div>
+
+                        <!-- Date -->
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Created Date</label>
+                            <input ngModel type="datetime-local" class="form-control" id="date" name="Date">
+                        </div>
+
+                        <!-- Shared -->
+                        <div class="mb-3 form-check">
+                            <input ngModel type="checkbox" class="form-check-input" id="shared" name="Shared">
+                            <label class="form-check-label" for="shared">Shared</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Soumettre</button>
+                    </form>
+                </div>
+
+
+                <!--Troixieme tab-->
+                <div class="tab-pane fade" id="nav-collaboration" role="tabpanel"
+                    aria-labelledby="nav-collaboration-tab">
+                    <!--Ici s'afficher la liste des personnes qui collabore avec-->
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                                dy=".3em">32x32</text>
+                        </svg>
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <strong class="text-gray-dark">Full Name</strong>
+                                <a href="#">Follow</a>
+                            </div>
+                            <span class="d-block">@username</span>
+                        </div>
+                    </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                                dy=".3em">32x32</text>
+                        </svg>
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <strong class="text-gray-dark">Full Name</strong>
+                                <a href="#">Follow</a>
+                            </div>
+                            <span class="d-block">@username</span>
+                        </div>
+                    </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                                dy=".3em">32x32</text>
+                        </svg>
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <strong class="text-gray-dark">Full Name</strong>
+                                <a href="#">Follow</a>
+                            </div>
+                            <span class="d-block">@username</span>
+                        </div>
+                    </div>
+                    <small class="d-block text-end mt-3">
+                        <a href="#">All suggestions</a>
+                    </small>
+
+                </div>
             </div>
-
-            <!-- DateEvent -->
-            <div class="mb-3">
-                <label for="dateEvent" class="form-label">DateEvent</label>
-                <input type="datetime-local" class="form-control" id="dateEvent" name="DateEvent">
-            </div>
-
-            <!-- Description -->
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="Description" rows="4"></textarea>
-            </div>
-
-            <!-- Event -->
-            <div class="mb-3">
-                <label for="event" class="form-label">Event</label>
-                <input type="text" class="form-control" id="event" name="Event">
-            </div>
-
-            <!-- Shared -->
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="shared" name="Shared">
-                <label class="form-check-label" for="shared">Shared</label>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary">Soumettre</button>
-        </form>
-
+        </div>
     </div>
 </div>
