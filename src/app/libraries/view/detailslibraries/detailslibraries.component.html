@@ -1,7 +1,21 @@
-
 <div class="row">
     <div class="col-md">
         <h2 class="text-center mb-4" ngModel>{{library.Title}} - details</h2>
-        <div class="my-3 p-3 bg-white text-dark rounded shadow-sm">hello</div>
+        <div class="my-3 p-3 bg-white text-dark rounded shadow-sm">
+            <ol *ngFor="let song1 of library.Songlists" class="list-group list-group">
+                <li>
+                    class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                            <h5>{{song1.Title}}</h5>
+                        </div>
+                        <p>{{song1.Description}}</p>
+                    </div>
+                    <span class="badge bg-secondary rounded-pill">{{library.Date}}</span>
+                </li>
+            </ol>
+        </div>
     </div>
 </div>
+
+<!--Dans le li:  (click)="showLibraryDetails(library.id)-->
