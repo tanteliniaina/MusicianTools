@@ -11,31 +11,31 @@ import { SongsService } from 'src/app/services/songs.service';
   templateUrl: './detailssongs.component.html',
   styleUrls: ['./detailssongs.component.css']
 })
-export class DetailssongsComponent{
+export class DetailssongsComponent {
 
-  song_id:any;
-  song: Songs={};
+  song_id: any;
+  song: Songs = {};
 
-  constructor(private db_song:SongsService, private activatedRoute : ActivatedRoute, private router : Router) {
+  constructor(private db_song: SongsService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.song_id = this.activatedRoute.snapshot.params["id"];
     this.db_song.getSong(this.song_id)
-    .subscribe((data)=>{
-      this.song = data;
-    })
+      .subscribe((data) => {
+        this.song = data;
+      })
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
     this.db_song.editSong(this.song_id, form.value)
-    .then((data)=>{
-      console.log(data);
-      this.router.navigate(['/allsongs']);
-    })
-    .catch((err)=>{
-      console.log(err);
-    });
+      .then((data) => {
+        console.log(data);
+        this.router.navigate(['/allsongs']);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-  onCancel(){
+  onCancel() {
     this.router.navigate(['/allsongs']);
   }
 }

@@ -12,11 +12,17 @@ import { SongsService } from 'src/app/services/songs.service';
 
 export class AllsongsComponent /*implements OnInit*/ {
 
+  /*Pour les données*/
   songlist: Songs[] = [];
-  song: Songs={};
+  song: Songs = {};
 
+  /*Pour la pagination*/
   currentPage = 1;
   librariesPerPage = 10;
+
+  /*Pour la recherche*/
+  searchResults: Songs[] = [];
+  searchTerm: string = '';
 
   constructor(private router: Router, private db_song: SongsService) {
     this.db_song.getSongs().subscribe((data) => {
@@ -24,10 +30,10 @@ export class AllsongsComponent /*implements OnInit*/ {
       this.songlist = data;
     });
   }
-/*
-  ngOnInit(): void {
-  }
-  */
+  /*
+    ngOnInit(): void {
+    }
+    */
 
   /*fonction on submit pour enregistrer*/
   onSubmit(form: NgForm) {
@@ -53,41 +59,56 @@ export class AllsongsComponent /*implements OnInit*/ {
 
       })
       .catch((err) => {
-          console.log(err);
+        console.log(err);
       });
   }
 
-  showSongDetails(library_id: any){
-    this.db_song.getSong(library_id)
-    .subscribe((data)=>{
-      this.song = data;
-    })
+  showSongDetails(song_id: any) {
+    this.db_song.getSong(song_id)
+      .subscribe((data) => {
+        this.song = data;
+      })
   }
 
-    /*Début de la gestion de la pagination en mode liste*/
-    get startIndex(): number {
-      return (this.currentPage - 1) * this.librariesPerPage;
+  resetSearch() {
+    this.searchTerm = '';
+    this.searchResults = [];
+    this.songlist = [...this.songlist]; // Restore the original list
+  }
+
+  search() {
+    this.songlist = this.songlist.filter(song =>
+      song.Title?.toString().toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      song.Artist?.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+
+
+  /*Début de la gestion de la pagination en mode liste*/
+  get startIndex(): number {
+    return (this.currentPage - 1) * this.librariesPerPage;
+  }
+
+  get endIndex(): number {
+    return this.currentPage * this.librariesPerPage;
+  }
+
+  get displayedItems(): any[] {
+    return this.songlist.slice(this.startIndex, this.endIndex);
+  }
+
+  /*Gestion des boutons next et previous en mode liste*/
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
     }
-  
-    get endIndex(): number {
-      return this.currentPage * this.librariesPerPage;
+  }
+
+  nextPage(): void {
+    if (this.endIndex < this.songlist.length) {
+      this.currentPage++;
     }
-  
-    get displayedItems(): any[] {
-      return this.songlist.slice(this.startIndex, this.endIndex);
-    }
-  
-    /*Gestion des boutons next et previous en mode liste*/
-    previousPage(): void {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
-    }
-    
-    nextPage(): void {
-      if (this.endIndex < this.songlist.length) {
-        this.currentPage++;
-      }
-    }
+  }
 
 }

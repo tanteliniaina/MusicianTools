@@ -1,4 +1,5 @@
 export class Songs {
+    [x: string]: any;
     id?:string;
     Artist?: string;
     Category?: string;

@@ -33,3 +33,12 @@ h2{
 h4{
     color: #c908c0 ;
 }
+
+.btn-circle.btn-xl {
+    width: 100px;
+    height: 100px;
+    padding: 13px 18px;
+    border-radius: 60px;
+    font-size: 18px;
+    text-align: center;
+}

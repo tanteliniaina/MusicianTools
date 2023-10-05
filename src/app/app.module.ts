@@ -26,7 +26,7 @@ const routes=[
   { path: 'allsongs', component:  AllsongsComponent},
   { path: 'songdetails/:id', component:  DetailssongsComponent},
   { path: 'alllibraries', component:  AlllibrariesComponent},
-  { path: 'librariesdetails', component:  DetailslibrariesComponent},
+  { path: 'librariesdetails/:id', component:  DetailslibrariesComponent},
   { path: 'allcollaborations', component:  AllcollaborationsComponent},
   { path: 'authentication', component:  AuthentificationComponent},
   { path: 'profil', component:  ProfilComponent},

@@ -10,15 +10,21 @@ import { LibrariesService } from 'src/app/services/libraries.service';
   templateUrl: './alllibraries.component.html',
   styleUrls: ['./alllibraries.component.css']
 })
-export class AlllibrariesComponent /*implements OnInit*/ {
+export class AlllibrariesComponent implements OnInit {
 
+  /*Pour les données */
   libraries: Libraries[] = [];
-  library: Libraries={};
+  library: Libraries = {};
 
+  /*Pour la pagination*/
   currentPage = 1;
   librariesPerPage = 10;
 
-  constructor(private router: Router, private db_libraries: LibrariesService, private activatedRoute : ActivatedRoute) {
+  /*Pour l'activation des champs*/
+  isFieldDisabled: boolean = false;
+
+  //CONSTRUCTEUR
+  constructor(private router: Router, private db_libraries: LibrariesService, private activatedRoute: ActivatedRoute) {
     /*Pour afficher la totalité des listes de librairies*/
     this.db_libraries.getLibraries().subscribe((data) => {
       console.log(data);
@@ -26,10 +32,11 @@ export class AlllibrariesComponent /*implements OnInit*/ {
     });
   }
 
-/*
-  ngOnInit(): void {
-  }
-*/
+  
+    ngOnInit(): void {
+      this.isFieldDisabled = false;
+    }
+  
 
   /*fonction on submit pour enregistrer*/
   onSubmit(form: NgForm) {
@@ -50,17 +57,21 @@ export class AlllibrariesComponent /*implements OnInit*/ {
 
       })
       .catch((err) => {
-          console.log(err);
+        console.log(err);
       });
   }
 
-  showLibraryDetails(library_id: any){
+  showLibraryDetails(library_id: any) {
     this.db_libraries.getLibrary(library_id)
-    .subscribe((data)=>{
-      this.library = data;
-    })
+      .subscribe((data) => {
+        this.library = data;
+      })
   }
 
+  /*Activer ou desactiver les fields*/
+  toggleField() {
+    this.isFieldDisabled = !this.isFieldDisabled;
+  }
   
 
   /*Début de la gestion de la pagination en mode liste*/
@@ -76,19 +87,6 @@ export class AlllibrariesComponent /*implements OnInit*/ {
     return this.libraries.slice(this.startIndex, this.endIndex);
   }
 
-  /*Gestion des boutons next et previous en mode liste*/
-  previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
-  
-  nextPage(): void {
-    if (this.endIndex < this.libraries.length) {
-      this.currentPage++;
-    }
-  }
-
   /*Pour l'affichage en mode folder*/
   getItemsInColumns(): any[][] {
     const itemsPerColumn = 4;
@@ -98,5 +96,19 @@ export class AlllibrariesComponent /*implements OnInit*/ {
     }
     return itemsInColumns;
   }
+
+  /*Gestion des boutons next et previous en mode liste*/
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage(): void {
+    if (this.endIndex < this.libraries.length) {
+      this.currentPage++;
+    }
+  }
+  /*fin de la gestion de la pagination en mode liste et folder */
 
 }

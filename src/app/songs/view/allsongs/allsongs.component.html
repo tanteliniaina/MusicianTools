@@ -15,6 +15,17 @@
 
                 </div>
             </nav>
+
+            <!--Begin search bar-->
+            <br>
+            <div class="mb-3">
+                    <input [(ngModel)]="searchTerm" (input)="search()" (mousedown)="resetSearch()" class="form-control me-2" type="search" placeholder="Search songs..." aria-label="Search">
+            </div>
+            <!--End search bar-->
+
+
+            <li *ngFor="let result of searchResults">{{ result.Title }}</li>
+
             <div class="tab-content" id="nav-tabContent">
                 <!--Premier  de la liste des libraires-->
                 <div class="tab-pane fade" id="nav-personnalsong" role="tabpanel"
@@ -119,18 +130,12 @@
     <div class="col-md">
         <div class="my-3 p-3 bg-body rounded shadow-sm  bg-white text-dark">
             <h2 class="text-center mb-4">Song details :</h2>
-
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="create" autocomplete="off" checked>
-                <label class="btn btn-outline-success" for="create">Add a new song</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="edit" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="edit">Edit current song</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="delete" autocomplete="off">
-                <label class="btn btn-outline-danger" for="delete">Delete current song</label>
+            <div class="row">
+                <div class="col"><button class="btn btn-outline-secondary btn-circle btn-xl" for="delete">Add L</button></div>
+                <div class="col"><button class="btn btn-outline-secondary btn-circle btn-xl" for="delete">Add S</button></div>
+                <div class="col"><button class="btn btn-outline-secondary btn-circle btn-xl" for="delete">Edit</button></div>
+                <div class="col"><button class="btn btn-outline-secondary btn-circle btn-xl" for="delete">Delete</button></div>  
             </div>
-
             <br>
             <hr>
 
